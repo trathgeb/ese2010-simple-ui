@@ -1,0 +1,3 @@
+1.play apps are split into seperate layers: Presentation(view, controller) and Model. The cotroller responds to HTTP events, an Action is invoked. The action handles relevant data, updates the model objects and sends a response.
+
+2.
