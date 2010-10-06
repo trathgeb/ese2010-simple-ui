@@ -1,0 +1,38 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<h1>Forum</h1>
+<a href=http://localhost:9000/logout>Logout</a>
+
+
+
+<ul>
+	#{list items:questions, as:'q'}
+	<li>${q.date}<b>${q.user.name}: </b>${q.content} <b><font
+		color="red">${q.vote}</font></b> <a
+		href="@{Application.voteUpQuestion(q.ID)}">voteUp</a> <a
+		href="@{Application.voteDownQuestion(q.ID)}">voteDown</a> #{form
+	@Application.answer(q.ID)} <input type="submit" value="answer" /> <input
+		type="text" name="content" /> #{/form}
+
+	<blockquote>
+	<ul>
+		#{list items:q.answers, as:'a'}
+		<li>${a.date}<b>${a.user.name}: </b>${a.content}</li>
+		#{/list}
+	</ul>
+	</blockquote>
+	</li>
+
+	#{/list}
+</ul>
+
+
+
+
+
+
+
+<form action="@{Application.addQuestion}" method="GET"><input
+	type="text" name="content" /> <input type="submit" value="ask!" /></form>
+
+
