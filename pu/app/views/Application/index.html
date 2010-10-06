@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Forum</h1>
+<p align="right"><a href= http://localhost:9000/logout>Logout</a></p>
+
+<h2>${q}</h2>
+
+
+
+<ul>
+#{list items:questions, as:'q'}
+    <li>
+    ${q.date}<b>${q.user.name}: </b>${q.content} 
+    <b><font color="red">${q.vote}</font></b>
+   		<a href="@{Application.voteUpQuestion('q')}">voteUp</a>
+   		<a href="@{Application.voteDownQuestion($q)}">voteDown</a>
+    	<a href=/Application/answer?:qu=${q}>answer</a>    
+	    <blockquote>
+		    <ul>
+			    #{list items:q.getAnswers(), as:'a'}
+			    <li>
+			    ${a.date}<b>${a.user.name}: </b>${a.content}
+			    <b><font color="red">${a.vote}</font></b>
+			    <a href="@{Application.voteUpAnswer($a)}">voteUp</a>
+   				<a href="@{Application.voteDownAnswer($a)}">voteDown</a>
+			    </li>
+			    #{/list}
+		    </ul>
+	    </blockquote>
+    </li>
+    
+#{/list}
+</ul>
+
+
+
+
+
+<a href="@{Application.addQuestion}">Ask</a>
+ 
+

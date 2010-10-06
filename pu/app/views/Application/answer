@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'answer' /}
+ 
+
+
+#{form @Application.answer(id, q)}
+
+    <p>
+        <label for="content">Your Question: </label>
+        <textarea name="content" id="content"></textarea>
+    </p>
+    <p>
+        <input type="submit" value="Answer" />
+    </p>
+#{/form}
